@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+{% block main %}
+<div class="row">
+    <div class="col">
+        <div class="container py-3">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Book - {{book.id}}</h3>
+                </div>
+                <div class="panel-body">
+                    <p>
+                        Name: {{book.name}}
+                    </p>
+                    <p>
+                        Price: {{book.price}}
+                    </p>
+                    <p>
+                        Introduction:
+                        <div>{{book.introduction | linebreaksbr}}</div>
+                    </p>
+                    <p>
+                        <a href="../" class="btn btn-default">Back</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock main %}

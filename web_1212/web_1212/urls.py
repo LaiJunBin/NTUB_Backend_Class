@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.urls import path
 from web_1212 import views
 from main import views as main
-from books import views as books
+from books import views as book
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -25,4 +25,8 @@ urlpatterns = [
     path('pow/<int:x>/<int:y>/', views.pow),
     path('main/', main.index),
     path('l/<int:num1>/<int:num2>/', main.l),
+
+    path('book/', book.index, name = 'book-index'),
+    path('book/<int:book_id>/', book.info, name = 'book-info'),
+    path('book/add', book.add, name = 'book-add')
 ]

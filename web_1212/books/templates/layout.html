@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=0edge">
+    <title>Document</title>
+    {% load bootstrap4 %}
+    {% bootstrap_css %}
+
+    {% load bootstrap3 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript jquery=True %}
+
+    <script>
+        document.oncontextmenu = function (e) {
+            e.preventDefault()
+        }
+    </script>
+    <style>
+        body {
+            user-select: none;
+        }
+
+        table {
+            border-collapse: collapse;
+        }
+
+        caption {
+            caption-side: top;
+        }
+
+        td,
+        th {
+            padding: 10px 25px;
+            text-align: center;
+        }
+
+        tr:nth-child(even) {
+            background: #fffad8;
+        }
+
+        th {
+            background: #39f;
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        {% block main %}
+
+        {% endblock main %}
+    </div>
+</body>
+
+</html>
