@@ -8,11 +8,8 @@
     <title>Document</title>
     {% load bootstrap4 %}
     {% bootstrap_css %}
-
-    {% load bootstrap3 %}
-    {% bootstrap_css %}
     {% bootstrap_javascript jquery=True %}
-
+    
     <script>
         document.oncontextmenu = function (e) {
             e.preventDefault()
@@ -45,11 +42,36 @@
             background: #39f;
             color: #fff;
         }
+
+        ul.messages>li{
+            list-style-type: none;
+        }
+
+        .btn-info {
+            color: #fff;
+            background-color: #5bc0de;
+            border-color: #46b8da;
+        }
+
+        .btn-default {
+            color: #333;
+            background-color: #fff;
+            border-color: #ccc;
+        }
+
+        .btn-default:hover{
+            background:#ddd;
+            color:black;
+        }
+        
     </style>
 </head>
 
 <body>
-    <div class="container">
+    <div class="container mt-3">
+
+        {% bootstrap_messages %}
+
         {% block main %}
 
         {% endblock main %}

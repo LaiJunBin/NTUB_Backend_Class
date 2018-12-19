@@ -1,5 +1,7 @@
 {% extends "layout.html" %}
 
+{% load bootstrap4 %}
+
 {% block main %}
 
 <form action="{% url 'book-add' %}" method="POST">
@@ -11,22 +13,9 @@
         </h2>
     </legend>
 
-    <div class="form-group">
-        <label for="name">Book Name:</label>
-        <input type="text" name="name" class="form-control" id="name" placeholder="Input Book Name">
-    </div>
-
-    <div class="form-group">
-        <label for="price">Price:</label>
-        <input type="number" name="price" class="form-control" id="price" placeholder="Input Price">
-    </div>
-
-    <div class="form-group">
-        <label for="introduction">Introduction:</label>
-        <textarea name="introduction" id="introduction" class="form-control" cols="30" rows="10"></textarea>
-    </div>
-
-    <button type="submit" class="btn btn-primary w-100">Submit</button>
+    {% bootstrap_form form %}
+    
+    <button type="submit" class="btn btn-outline-primary w-100">Submit</button>
 </form>
 
 {% endblock main %}

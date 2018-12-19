@@ -1,6 +1,10 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse, HttpResponseRedirect
+from django.contrib import messages
+
 from .models import Book
+from .forms import BookForm
+
 # Create your views here.
 
 def index(request):
@@ -17,11 +21,11 @@ def info(request, book_id):
     })
 
 def add(request):
-    if request.method == 'GET':
-        return render(request, 'add.html')
-    elif request.method == 'POST':
-        name = request.POST.get('name')
-        price = request.POST.get('price')
-        introduction = request.POST.get('introduction')
-        Book.objects.create(name=name, price=price, introduction=introduction)
-        return HttpResponseRedirect('/book')
+    form = BookForm(request.POST or None)
+    if form.is_valid():
+        form.save()
+        messages.success(request, '新增成功!')
+        return redirect('book-index')
+
+    return render(request, 'add.html', {'form': form})
+       
