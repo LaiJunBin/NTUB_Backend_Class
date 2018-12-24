@@ -6,6 +6,8 @@
             <div class="panel panel-info">
                 <div class="panel-heading">
                     <h3 class="panel-title">Book - {{book.id}}</h3>
+                    <a href="{% url 'book:edit' book.id %}" class="btn btn-warning">Edit</a>
+                    <a href="{% url 'book:delete' book.id %}" class="btn btn-danger">Delete</a>
                 </div>
                 <div class="panel-body">
                     <p>

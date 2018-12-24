@@ -12,3 +12,7 @@ class BookForm(forms.ModelForm):
         model = Book
         fields = '__all__'
         # exclude = () # except
+
+class DeleteConfirmForm(forms.Form):
+    check = forms.BooleanField(label='您確定要刪除嗎?')
+    

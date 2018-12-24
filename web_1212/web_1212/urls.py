@@ -14,19 +14,22 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
+from django.shortcuts import redirect
 from web_1212 import views
 from main import views as main
-from books import views as book
+
+admin.site.site_title = 'Book Store Manager'
+admin.site.site_header = 'Book Manager'
 
 urlpatterns = [
+    path('jet/', include('jet.urls', 'jet')),  # Django JET URLS
     path('admin/', admin.site.urls),
-    path('', views.index),
-    path('pow/<int:x>/<int:y>/', views.pow),
-    path('main/', main.index),
-    path('l/<int:num1>/<int:num2>/', main.l),
+    # path('', views.index),
+    # path('pow/<int:x>/<int:y>/', views.pow),
+    # path('main/', main.index),
+    # path('l/<int:num1>/<int:num2>/', main.l),
 
-    path('book/', book.index, name = 'book-index'),
-    path('book/<int:book_id>/', book.info, name = 'book-info'),
-    path('book/add', book.add, name = 'book-add')
+    path('', lambda request: redirect('book:index'), name='root'),
+    path('books/', include('books.urls')),
 ]

@@ -1,13 +1,13 @@
 {% extends "layout.html" %}
 {% block main %}
 <div class="row">
-    <div class="col-4 mx-auto">
+    <div class="col-8 mx-auto">
 
         <table class="table">
             <caption>
                 <h2 class="d-flex">
                     <div class="flex-grow-1">Book List</div>
-                    <a href="{% url 'book-add' %}" class="btn btn-default">Add Book</a>
+                    <a href="{% url 'book:add' %}" class="btn btn-default">Add Book</a>
                 </h2>
             </caption>
             <thead>
@@ -25,7 +25,9 @@
                     <td>{{book.name}}</td>
                     <td>{{book.price}}</td>
                     <td>
-                        <a href="{% url 'book-info' book.id %}" class="btn btn-info">More</a>
+                        <a href="{% url 'book:info' book.id %}" class="btn btn-info">More</a>
+                        <a href="{% url 'book:edit' book.id %}" class="btn btn-warning">Edit</a>
+                        <a href="{% url 'book:delete' book.id %}" class="btn btn-danger">Delete</a>
                     </td>
                 </tr>
                 {% empty %}
