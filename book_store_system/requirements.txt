@@ -1,0 +1,5 @@
+Django==2.1.4
+django-bootstrap3==11.0.0
+django-bootstrap4==0.0.7
+django-jet==1.0.8
+pytz==2018.7
