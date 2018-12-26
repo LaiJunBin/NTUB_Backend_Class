@@ -31,12 +31,16 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'jet',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    'books',
+    'bootstrap4'
 ]
 
 MIDDLEWARE = [
@@ -54,7 +58,9 @@ ROOT_URLCONF = 'core.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            # os.path.join(BASE_DIR, 'templates'),  # 最外層找templates
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
