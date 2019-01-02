@@ -1,13 +1,30 @@
 {% extends 'layout.html' %}
 
 {% block main %}
-  <h2>#{{ book.id }} {{ book.name }}</h2>
-  <hr>
-  <p>書名: {{ book.name }}</p>
-  <p>價格: {{ book.price }}</p>
-  <p>簡介: {{ book.introduction | linebreaksbr }}</p>
+<h2>#{{ book.id }} {{ book.name }}</h2>
+<hr>
+{% if perms.books.view_book %}
+<p>書名: {{ book.name }}</p>
+<p>價格: {{ book.price }}</p>
+<p>作者: {{ book.authors.all | join:' , ' }}</p>
+<p>出版社: {{ book.publish }}</p>
+<p>類別: {{ book.categories }}</p>
+<p>標籤: {{ book.tags.all | join:' , ' }}</p>
+<p>簡介: {{ book.introduction | linebreaksbr }}</p>
+{% elif user.is_authenticated %}
+<p>很抱歉，你沒有權限瀏覽書籍資訊</p>
+{% else %}
+<p>很抱歉，你沒有權限瀏覽書籍資訊，若要瀏覽請
+  <a href="{% url 'login' %}?next=/books/{{ book.id }}">登入</a>
+</p>
+{% endif %}
 
-  <a href="{% url 'books:index' %}" class="btn btn-primary"><< Back</a>
-  <a href="{% url 'books:edit' book.id %}" class="btn btn-info">Edit</a>
-  <a href="{% url 'books:delete' book.id %}" class="btn btn-danger">Delete</a>
+
+<a href="{% url 'books:index' %}" class="btn btn-primary">
+  << Back</a> {% if perms.books.change_book %} <a href="{% url 'books:edit' book.id %}" class="btn btn-info">Edit
+</a>
+{% endif %}
+{% if perms.books.delete_book %}
+<a href="{% url 'books:delete' book.id %}" class="btn btn-danger">Delete</a>
+{% endif %}
 {% endblock %}

@@ -1,7 +1,8 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" href="#">Book Store</a>
+  <a class="navbar-brand" href="{% url 'root' %}">Book Store</a>
 
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarToggler"
+    aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
@@ -9,13 +10,25 @@
 
     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
       <li class="nav-item">
-        <a class="nav-link" href="#">書籍列表</a>
+        <a class="nav-link" href="{% url 'books:index' %}">書籍列表</a>
       </li>
     </ul>
 
     <ul class="navbar-nav mt-2 mt-lg-0">
       <li class="nav-item">
-        <a class="nav-link" href="#">登入</a>
+        {% if user.is_authenticated %}
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown">
+          使用者： {{ user.username }}
+        </a>
+        <div class="dropdown-menu" aria-labelledby="userDropdown">
+          <a class="dropdown-item" href="{% url 'logout' %}">登出</a>
+        </div>
+      </li>
+      {% else %}
+      <a class="nav-link" href="{% url 'login' %}">登入</a>
+      {% endif %}
+
       </li>
     </ul>
   </div>
