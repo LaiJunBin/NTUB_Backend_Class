@@ -3,12 +3,10 @@
 {% block main %}
 <div class="row">
     <div class="col col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3">
-        <h2>登入</h2>
+        <h2>註冊</h2>
         <hr>
         {% include 'shared/_form.html' %}
-        <a href="{% url 'books:register' %}">還沒有帳號嗎？點我註冊</a>
-        <br>
-        <a href="{% url 'books:password_reset' %}">忘記密碼了嗎？</a>
+        <a href="{% url 'books:login' %}">已經有帳號了嗎？點我登入</a>
     </div>
 </div>
 {% endblock %}

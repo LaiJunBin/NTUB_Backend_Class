@@ -15,7 +15,7 @@
 <p>很抱歉，你沒有權限瀏覽書籍資訊</p>
 {% else %}
 <p>很抱歉，你沒有權限瀏覽書籍資訊，若要瀏覽請
-  <a href="{% url 'login' %}?next=/books/{{ book.id }}">登入</a>
+  <a href="{% url 'books:login' %}?next=/books/{{ book.id }}">登入</a>
 </p>
 {% endif %}
 

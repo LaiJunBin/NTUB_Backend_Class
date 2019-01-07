@@ -16,14 +16,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.shortcuts import redirect
-from django.contrib.auth.views import LoginView, LogoutView
 
 from .views import permission_denied
-
-login_params = {
-    'template_name': 'users/login.html',
-    'redirect_authenticated_user': True
-}
 
 # logout_params = {
 #     'next_page': '/'
@@ -31,10 +25,10 @@ login_params = {
 
 urlpatterns = [
     path('', lambda request: redirect('books:index'), name='root'),
-    path('login/', LoginView.as_view(**login_params), name='login'),
-    path('logout/', LogoutView.as_view(), name='logout'),
     path('jet/', include('jet.urls', 'jet'), 'jet'),
     path('admin/', admin.site.urls),
     path('books/', include('books.urls')),
-    path('403/', permission_denied, name='403'),
+    # path('403/', permission_denied, name='403'),
 ]
+
+handler403 = permission_denied

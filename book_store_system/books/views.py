@@ -2,6 +2,8 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required, permission_required
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth import login
 
 from .models import Book
 from .forms import BookForm
@@ -23,7 +25,7 @@ def show(request, book_id):
 
 @login_required
 # @permission_required('books.add_book', raise_exception=True)
-@permission_required('books.add_book', login_url='/403')
+@permission_required('books.add_book', raise_exception=True)
 def add(request):
     form = BookForm(request.POST or None)
     if form.is_valid():
@@ -56,3 +58,16 @@ def delete(request, book_id):
 
     return render(request, 'books/delete.html', {'form': form})
 
+def register(request):
+    if(request.user.is_authenticated):
+        return redirect('/')
+    form = UserCreationForm(request.POST or None)
+    if form.is_valid():
+        user = form.save()
+        login(request, user)
+        messages.success(request, '{} 您好，歡迎使用～'.format(user.username))
+        return redirect('root')
+    
+    return render(request, 'users/register.html', {
+        'form': form
+    })
