@@ -16,13 +16,17 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
+from rest_framework.documentation import include_docs_urls
+
 from posts import views as post_view
 
 router = DefaultRouter()
 router.trailing_slash = ''
-router.register('posts', post_view.PostViewSet)
+router.register('posts', post_view.PostViewSet, 'posts')
+router.register('commits', post_view.CommitViewSet, 'commits')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include(router.urls)),
+    path('docs/', include_docs_urls(title='Django Test')),
 ]
